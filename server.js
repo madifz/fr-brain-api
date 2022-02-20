@@ -1,3 +1,5 @@
+// npm install bcrypt-nodejs
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -66,6 +68,18 @@ app.get('/profile/:id', (req, res) => {
     res.status(400).json('not found');
   }
 })
+
+bcrypt.hash("bacon", null, null, function(err, hash) {
+    // Store hash in your password DB.
+});
+
+// Load hash from your password DB.
+bcrypt.compare("bacon", hash, function(err, res) {
+    // res == true
+});
+bcrypt.compare("veggies", hash, function(err, res) {
+    // res = false
+});
 
 app.post('/image', (req, res) => {
   const { id } = req.body;
